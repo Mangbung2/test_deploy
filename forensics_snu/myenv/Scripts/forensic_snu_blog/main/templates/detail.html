@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title_area %}
+<title>게시글 보기</title>
+{% endblock %}
+
+{% block main_area %}
+
+<div style="padding-bottom: 25px; width: 70%; margin:0 auto">
+    <div class="card" >
+        <div class="card-header">
+            <b>{{my_write.id}}번째글</b> 
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><b>{{my_write.title}}</b></h5>
+            <p class="card-text">{{my_write.contents}}</p>
+            <p class="card-text">{{my_write.created_at}}</p>
+        <div class="container" align="right">
+            <a class="btn btn-primary" role="button" href="{% url 'update' my_write.id %}">
+                수정하기
+            </a>
+            <a class="btn btn-primary" role="button" href="{% url 'delete' my_write.id %}">
+                삭제하기
+            </a>
+        </div>
+        </div>
+  </div>
+</div>
+{% endblock %}

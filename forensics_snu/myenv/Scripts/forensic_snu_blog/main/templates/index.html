@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title_area %}
+<title>Forensics_SNU</title>
+{% endblock %}
+
+{% block main_area %}
+
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5" style="width: 100%; margin:0 auto">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-10">
+                {% for write in posts %}
+                    <!-- Post preview-->
+                    <div class="write">
+                    <div class="post-preview">
+                        <a href="{% url 'detail' write.id %}">
+                            <b>{{write.id}}번째 글</b>
+                            <h3 class="post-title">{{write.title}}</h2>
+                            <h4 class="post-subtitle">{{write.contents|truncatechars:20}}...</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by 작성자 {{write.created_at}}
+                        </p>
+                    </div>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                {% endfor %}
+                <!--하단처리-->
+                <div>
+                    <!--페이지네이션-->
+                    <div class="btn-group" role="group" style="float: left;">
+                        {% if posts.has_previous %}
+                        <a class="btn btn-secondary" href="?page=1">맨 앞으로</a>
+                        <a class="btn btn-secondary" href="?page={{posts.previous_page_number}}">이전으로</a>
+                        {% else %}
+                        <a class="btn btn-secondary disabled" href="#" >맨 앞으로</a>
+                        <a class="btn btn-secondary disabled" href="#" >이전으로</a>
+                        {% endif %}
+
+                        {% if posts.has_next %}
+                        <a class="btn btn-secondary" href="?page={{posts.next_page_number}}">다음으로</a>
+                        <a class="btn btn-secondary" href="?page={{posts.paginator.num_pages}}">맨 뒤로</a>
+                        {% else %}
+                        <a class="btn btn-secondary disabled" href="#" >다음으로</a>
+                        <a class="btn btn-secondary disabled" href="#" >맨 뒤로</a>
+                        {% endif %}
+                    </div>
+
+                    <!-- 글 작성하기-->
+                    <div class="d-flex justify-content-end mb-4" style="float: right;">
+                        <a class="btn btn-primary text-uppercase" role="button" href="{% url 'create' %}">
+                            글 작성하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
