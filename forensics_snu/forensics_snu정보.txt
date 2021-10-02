@@ -1,9 +1,0 @@
-프로젝트명
-forensic_snu_blog
-
-
-슈퍼계정
-id
-adminsnu
-pw
-adminsnu11
